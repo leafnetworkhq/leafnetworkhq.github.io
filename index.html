@@ -1,237 +1,209 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#c7ff35" />
-  <title>Leaf Network — Small team, large chaos</title>
-  <meta name="description" content="Leaf Network is a three-person crew making strange, useful things for the internet." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#090a0d" />
+  <meta name="description" content="Leaf Network — a small group making things for the internet." />
+  <title>Leaf Network</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #11120f;
-      --paper: #f2f1e8;
-      --lime: #c7ff35;
-      --orange: #ff7043;
-      --lavender: #b9a7ff;
-      --line: rgba(17, 18, 15, .18);
+      color-scheme: dark;
+      --bg: #090a0d;
+      --card: rgba(15, 16, 20, .88);
+      --line: rgba(255,255,255,.085);
+      --muted: #777b86;
+      --text: #f0f1f3;
+      --accent: #c6ff6b;
     }
-
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html, body { min-height: 100%; }
     body {
       margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "Manrope", sans-serif;
-      overflow-x: hidden;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Manrope, system-ui, sans-serif;
     }
-
-    ::selection { background: var(--ink); color: var(--lime); }
-
-    .grain {
-      position: fixed; inset: 0; z-index: 20; pointer-events: none; opacity: .07;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    #particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .glow {
+      position: fixed;
+      width: 420px;
+      height: 320px;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse, rgba(125, 155, 88, .08), transparent 70%);
+      pointer-events: none;
     }
-
-    .nav {
-      height: 76px; display: flex; align-items: center; justify-content: space-between;
-      max-width: 1320px; margin: 0 auto; padding: 0 28px;
-      border-bottom: 1px solid var(--line);
+    .card {
+      position: relative;
+      width: min(100%, 440px);
+      min-height: 310px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: 0 24px 90px rgba(0,0,0,.58), inset 0 1px rgba(255,255,255,.045);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: arrive .7s cubic-bezier(.2,.8,.2,1) both;
     }
-    .brand { display: flex; align-items: center; gap: 11px; color: inherit; text-decoration: none; font-weight: 800; }
-    .brand img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid var(--ink); }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a { color: inherit; text-decoration: none; font-size: 13px; font-family: "DM Mono", monospace; }
-    .nav-links a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
-
-    main { max-width: 1320px; margin: auto; padding: 0 28px; }
-
-    .hero {
-      min-height: 680px; display: grid; grid-template-columns: 1fr 380px; align-items: center; gap: 40px;
-      border-bottom: 1px solid var(--line); position: relative;
+    @keyframes arrive { from { opacity: 0; transform: translateY(9px) scale(.985); } to { opacity: 1; transform: none; } }
+    .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .status { display: flex; align-items: center; gap: 7px; color: #a4a7ae; font: 10px "DM Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .status i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(198,255,107,.6); }
+    .tiny-mark { color: #686d77; font: 10px "DM Mono", monospace; }
+    .tabs { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 11px; background: rgba(255,255,255,.025); }
+    .tab {
+      flex: 1; border: 0; border-radius: 7px; padding: 8px 10px;
+      background: transparent; color: #858994; cursor: pointer;
+      font: 500 11px Manrope, sans-serif; transition: background .2s, color .2s, box-shadow .2s;
     }
-    .eyebrow { font: 500 12px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .12em; }
-    .eyebrow::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); border: 1px solid var(--ink); margin-right: 8px; }
-    h1 {
-      max-width: 850px; margin: 24px 0 28px; font-size: clamp(66px, 9.4vw, 142px); line-height: .82;
-      letter-spacing: -.085em; font-weight: 800;
+    .tab:hover { color: var(--text); }
+    .tab[aria-selected="true"] { background: #22242a; color: #f7f8fa; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+    .panel { padding: 26px 4px 4px; animation: show .28s ease both; }
+    @keyframes show { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    .org { display: flex; align-items: center; gap: 14px; }
+    .org-icon { width: 46px; height: 46px; border-radius: 13px; border: 1px solid rgba(255,255,255,.12); object-fit: cover; background: #20231c; }
+    h1 { margin: 0; font-size: 19px; line-height: 1.2; font-weight: 600; letter-spacing: -.055em; }
+    .handle { margin-top: 4px; color: var(--muted); font: 10px "DM Mono", monospace; }
+    .description { max-width: 325px; margin: 20px 0 0; color: #a5a8b0; font-size: 12px; line-height: 1.75; }
+    .home-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 25px; padding-top: 13px; border-top: 1px solid var(--line); color: #70747d; font: 9px "DM Mono", monospace; }
+    .home-foot span:last-child { color: #a6aaaf; }
+    .section-label { margin: 0 0 14px; color: #767a84; font: 10px "DM Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
+    .placeholder-list { display: grid; gap: 8px; }
+    .placeholder { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.018); }
+    .placeholder-main { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .placeholder-icon { display: grid; place-items: center; width: 27px; height: 27px; flex: 0 0 auto; border-radius: 8px; background: rgba(255,255,255,.055); color: #aab0a0; font-size: 12px; }
+    .placeholder-name { overflow: hidden; color: #d7d9de; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+    .placeholder-note { margin-top: 3px; color: #777b84; font: 9px "DM Mono", monospace; }
+    .badge { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 20px; padding: 4px 7px; color: #858a93; font: 8px "DM Mono", monospace; text-transform: uppercase; }
+    .member { display: flex; align-items: center; gap: 10px; padding: 10px 11px; border-bottom: 1px solid var(--line); }
+    .member:last-child { border-bottom: 0; }
+    .avatar { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid rgba(255,255,255,.09); border-radius: 50%; background: linear-gradient(145deg,#272a30,#17191e); color: #c3c6cd; font: 10px "DM Mono", monospace; }
+    .member-info { flex: 1; }
+    .member-name { color: #d7d9de; font-size: 11px; }
+    .member-role { margin-top: 3px; color: #777b84; font: 9px "DM Mono", monospace; }
+    .member-count { margin-left: auto; color: #737782; font: 9px "DM Mono", monospace; }
+    @media (max-width: 480px) {
+      body { padding: 16px; }
+      .card { padding: 17px; border-radius: 17px; }
+      .panel { padding-top: 22px; }
     }
-    h1 em { font-style: normal; color: transparent; -webkit-text-stroke: 2px var(--ink); }
-    .intro { max-width: 560px; font-size: 18px; line-height: 1.55; }
-
-    .stamp {
-      width: 320px; aspect-ratio: 1; border-radius: 50%; background: var(--lime); border: 1.5px solid var(--ink);
-      display: grid; place-items: center; justify-self: end; position: relative; transform: rotate(7deg);
-      box-shadow: 14px 14px 0 var(--ink); transition: transform .25s ease;
-    }
-    .stamp:hover { transform: rotate(-3deg) scale(1.02); }
-    .stamp-inner { width: 190px; height: 190px; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; text-align: center; font: 500 18px/1.3 "DM Mono", monospace; }
-    .stamp-inner b { display: block; font-size: 74px; line-height: .8; margin-bottom: 8px; }
-
-    .ticker { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--ink); color: var(--paper); }
-    .ticker-track { display: flex; width: max-content; animation: ticker 18s linear infinite; }
-    .ticker-track span { padding: 13px 22px; font: 500 13px "DM Mono", monospace; white-space: nowrap; }
-    .ticker-track b { color: var(--lime); }
-    @keyframes ticker { to { transform: translateX(-50%); } }
-
-    .section { padding: 100px 0; border-bottom: 1px solid var(--line); }
-    .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 38px; }
-    .section-head h2 { margin: 0; font-size: clamp(46px, 7vw, 86px); letter-spacing: -.07em; line-height: .9; }
-    .section-head p { margin: 0; font: 500 12px "DM Mono", monospace; }
-
-    .projects { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .project { text-decoration: none; color: inherit; border: 1.5px solid var(--ink); min-height: 390px; position: relative; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
-    .project:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--ink); }
-    .project:nth-child(1) { grid-column: span 7; background: var(--lavender); }
-    .project:nth-child(2) { grid-column: span 5; background: var(--orange); }
-    .project:nth-child(3) { grid-column: span 12; min-height: 300px; background: var(--lime); }
-
-    .project-no { position: absolute; top: 18px; left: 18px; font: 500 12px "DM Mono", monospace; }
-    .project-arrow { position: absolute; right: 18px; top: 14px; width: 44px; height: 44px; border: 1.5px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font-size: 22px; transition: transform .2s ease; }
-    .project:hover .project-arrow { transform: rotate(45deg); }
-    .project-art { height: 260px; display: grid; place-items: center; }
-    .project:nth-child(3) .project-art { height: 180px; }
-    .orb { width: 230px; height: 230px; border: 1.5px solid var(--ink); border-radius: 50%; background: repeating-radial-gradient(circle, transparent 0 12px, rgba(17,18,15,.18) 13px 14px); }
-    .blocks { width: 250px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; transform: rotate(-8deg); }
-    .blocks i { aspect-ratio: 1; background: var(--ink); border-radius: 4px; }
-    .blocks i:nth-child(3n) { background: var(--paper); border: 1.5px solid var(--ink); }
-    .signal { width: 70%; height: 3px; background: var(--ink); box-shadow: 0 18px var(--ink), 0 -18px var(--ink), 0 36px rgba(17,18,15,.35), 0 -36px rgba(17,18,15,.35); }
-
-    .project-meta { position: absolute; left: 18px; right: 18px; bottom: 17px; display: flex; justify-content: space-between; align-items: end; }
-    .project-meta h3 { margin: 0; font-size: 34px; letter-spacing: -.05em; }
-    .tag { font: 500 11px "DM Mono", monospace; border: 1px solid var(--ink); border-radius: 999px; padding: 7px 9px; background: rgba(242,241,232,.55); }
-
-    .crew-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .person { border-top: 1.5px solid var(--ink); padding-top: 18px; }
-    .portrait { height: 380px; border: 1.5px solid var(--ink); display: grid; place-items: center; overflow: hidden; }
-    .person:nth-child(1) .portrait { background: var(--orange); }
-    .person:nth-child(2) .portrait { background: var(--lavender); }
-    .person:nth-child(3) .portrait { background: var(--lime); }
-    .face { width: 180px; height: 220px; border: 1.5px solid var(--ink); border-radius: 50% 50% 45% 45%; background: var(--paper); position: relative; }
-    .face::before { content: ""; position: absolute; width: 54px; height: 14px; border-radius: 50%; border: 2px solid var(--ink); border-top: 0; left: 62px; top: 145px; }
-    .eyes { position: absolute; top: 82px; left: 48px; width: 84px; display: flex; justify-content: space-between; }
-    .eyes i { width: 20px; height: 20px; background: var(--ink); border-radius: 50%; }
-    .person-info { display: flex; justify-content: space-between; padding-top: 14px; }
-    .person-info h3 { margin: 0; font-size: 25px; letter-spacing: -.04em; }
-    .person-info span { font: 500 11px "DM Mono", monospace; text-align: right; }
-
-    .contact { min-height: 520px; display: flex; flex-direction: column; justify-content: space-between; }
-    .contact h2 { max-width: 1050px; margin: 0; font-size: clamp(58px, 10vw, 135px); line-height: .82; letter-spacing: -.08em; }
-    .contact h2 a { color: inherit; text-decoration: underline; text-decoration-thickness: 5px; text-underline-offset: 8px; }
-    .contact h2 a:hover { color: var(--orange); }
-    .footer { display: flex; justify-content: space-between; align-items: end; font: 500 12px "DM Mono", monospace; }
-
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 80px 0 60px; }
-      .stamp { width: 220px; justify-self: start; margin: 20px 0 0 20px; }
-      .stamp-inner { width: 135px; height: 135px; font-size: 13px; }
-      .stamp-inner b { font-size: 50px; }
-      .project:nth-child(n) { grid-column: span 12; }
-      .crew-grid { grid-template-columns: 1fr; }
-      .portrait { height: 330px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <nav class="nav">
-    <a class="brand" href="#top" aria-label="Leaf Network home">
-      <img src="icon.jpeg" alt="Leaf Network icon" />
-      <span>LEAF NETWORK®</span>
-    </a>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#crew">Crew</a>
-      <a href="#contact">Contact</a>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="glow" aria-hidden="true"></div>
+  <main class="card" aria-label="Leaf Network">
+    <div class="topline">
+      <span class="status"><i></i> little things, in progress</span>
+      <span class="tiny-mark">LN / 001</span>
     </div>
-  </nav>
-
-  <main id="top">
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Independent internet studio · Est. yesterday</div>
-        <h1>LEAF<br><em>NETWORK</em></h1>
-        <p class="intro">Three developers making silly things for serious people. Experiments, tools, websites and other digital objects that refuse to be boring.</p>
-      </div>
-      <div class="stamp" aria-label="Three developers, one shared brain">
-        <div class="stamp-inner"><div><b>3×</b>DEV MINDS<br>ONE BRAIN</div></div>
-      </div>
-    </section>
-
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span><b>●</b> BUILD WEIRD</span><span>SHIP FAST</span><span><b>●</b> BREAK THINGS</span><span>MAKE NICE</span>
-        <span><b>●</b> BUILD WEIRD</span><span>SHIP FAST</span><span><b>●</b> BREAK THINGS</span><span>MAKE NICE</span>
-      </div>
+    <div class="tabs" role="tablist" aria-label="Portfolio sections">
+      <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">Home</button>
+      <button class="tab" id="tab-projects" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1">Projects</button>
+      <button class="tab" id="tab-members" role="tab" aria-selected="false" aria-controls="panel-members" tabindex="-1">Members</button>
     </div>
 
-    <section class="section reveal" id="work">
-      <div class="section-head">
-        <h2>Selected<br>nonsense</h2>
-        <p>01 — 03 / EXPERIMENTS</p>
+    <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+      <div class="org">
+        <img class="org-icon" src="icon.jpeg" alt="Leaf Network icon" />
+        <div><h1>Leaf Network</h1><div class="handle">@leafnetworkhq</div></div>
       </div>
-      <div class="projects">
-        <a class="project" href="#" aria-label="Project one">
-          <span class="project-no">001 / TOOL</span><span class="project-arrow">↗</span>
-          <div class="project-art"><div class="orb"></div></div>
-          <div class="project-meta"><h3>Orbit Mail</h3><span class="tag">COMING SOON</span></div>
-        </a>
-        <a class="project" href="#" aria-label="Project two">
-          <span class="project-no">002 / GAME</span><span class="project-arrow">↗</span>
-          <div class="project-art"><div class="blocks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-          <div class="project-meta"><h3>Bean.exe</h3><span class="tag">PLAYABLE</span></div>
-        </a>
-        <a class="project" href="#" aria-label="Project three">
-          <span class="project-no">003 / EXPERIMENT</span><span class="project-arrow">↗</span>
-          <div class="project-art"><div class="signal"></div></div>
-          <div class="project-meta"><h3>Nothing Network</h3><span class="tag">ALWAYS ON</span></div>
-        </a>
+      <p class="description">Three developers, one shared corner of the internet. We make small, silly things just because we can.</p>
+      <div class="home-foot"><span>INDEPENDENT DEV GROUP</span><span>EST. WHENEVER</span></div>
+    </section>
+
+    <section class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" hidden>
+      <p class="section-label">A few things we're dreaming up</p>
+      <div class="placeholder-list">
+        <div class="placeholder"><div class="placeholder-main"><span class="placeholder-icon">✳</span><div><div class="placeholder-name">Project one</div><div class="placeholder-note">A little idea taking shape</div></div></div><span class="badge">Soon</span></div>
+        <div class="placeholder"><div class="placeholder-main"><span class="placeholder-icon">⌁</span><div><div class="placeholder-name">Project two</div><div class="placeholder-note">Currently being tinkered with</div></div></div><span class="badge">WIP</span></div>
+        <div class="placeholder"><div class="placeholder-main"><span class="placeholder-icon">◌</span><div><div class="placeholder-name">Project three</div><div class="placeholder-note">Classified (not really)</div></div></div><span class="badge">Secret</span></div>
       </div>
     </section>
 
-    <section class="section reveal" id="crew">
-      <div class="section-head">
-        <h2>The<br>troublemakers</h2>
-        <p>THE WHOLE DEPARTMENT</p>
+    <section class="panel" id="panel-members" role="tabpanel" aria-labelledby="tab-members" hidden>
+      <p class="section-label">Three humans behind the tabs</p>
+      <div class="placeholder-list">
+        <div class="member"><span class="avatar">01</span><div class="member-info"><div class="member-name">Member one</div><div class="member-role">Developer · idea haver</div></div><span class="member-count">01</span></div>
+        <div class="member"><span class="avatar">02</span><div class="member-info"><div class="member-name">Member two</div><div class="member-role">Developer · bug finder</div></div><span class="member-count">02</span></div>
+        <div class="member"><span class="avatar">03</span><div class="member-info"><div class="member-name">Member three</div><div class="member-role">Developer · button clicker</div></div><span class="member-count">03</span></div>
       </div>
-      <div class="crew-grid">
-        <article class="person"><div class="portrait"><div class="face"><div class="eyes"><i></i><i></i></div></div></div><div class="person-info"><h3>Dev One</h3><span>CODE / CHAOS</span></div></article>
-        <article class="person"><div class="portrait"><div class="face"><div class="eyes"><i></i><i></i></div></div></div><div class="person-info"><h3>Dev Two</h3><span>DESIGN / QUESTIONS</span></div></article>
-        <article class="person"><div class="portrait"><div class="face"><div class="eyes"><i></i><i></i></div></div></div><div class="person-info"><h3>Dev Three</h3><span>IDEAS / BREAKING IDEAS</span></div></article>
-      </div>
-    </section>
-
-    <section class="section contact reveal" id="contact">
-      <div class="eyebrow">Open for strange opportunities</div>
-      <h2>Have a weird<br>idea? <a href="mailto:hello@leafnetworkhq.com">Tell us.</a></h2>
-      <footer class="footer"><span>© 2026 LEAF NETWORK</span><span>MADE WITH 3 BRAINS<br>AND TOO MUCH CAFFEINE</span></footer>
     </section>
   </main>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+    function activate(tab, focus = false) {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
-    document.querySelectorAll(".project").forEach((card) => {
-      card.addEventListener("mousemove", (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `translate(${-5 + x * 4}px, ${-5 + y * 4}px) rotate(${x * 0.5}deg)`;
+      panels.forEach((panel) => { panel.hidden = panel.id !== tab.getAttribute('aria-controls'); });
+      if (focus) tab.focus();
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', (event) => {
+        let next = index;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        activate(tabs[next], true);
       });
-      card.addEventListener("mouseleave", () => card.style.transform = "");
     });
+
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width = 0, height = 0, particles = [];
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth; height = window.innerHeight;
+      canvas.width = width * dpr; canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(42, Math.max(18, Math.floor(width * height / 27000)));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width, y: Math.random() * height,
+        r: Math.random() * 1.2 + .35,
+        vx: (Math.random() - .5) * .11, vy: (Math.random() - .5) * .11,
+        a: Math.random() * .28 + .09
+      }));
+      draw();
+    }
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(211, 226, 190, ${p.a})`; ctx.fill();
+        if (!reduceMotion) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -5) p.x = width + 5; if (p.x > width + 5) p.x = -5;
+          if (p.y < -5) p.y = height + 5; if (p.y > height + 5) p.y = -5;
+        }
+      }
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
   </script>
 </body>
 </html>
