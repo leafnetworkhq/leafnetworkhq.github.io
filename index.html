@@ -39,6 +39,11 @@
       background-size: 5px 5px;
       mask-image: radial-gradient(ellipse at center, #000, transparent 78%);
     }
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+      
     #particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
     .glow {
       position: fixed; width: min(700px, 100vw); height: 520px; left: 50%; top: 50%;
@@ -125,7 +130,7 @@
   <div class="glow" aria-hidden="true"></div>
   <main class="card" aria-label="Leaf Network">
     <div class="topline">
-      <span class="status"><i></i> little things, in progress</span>
+      <span class="status"><i></i> ln's hq</span>
       <span class="tiny-mark">LN / 001</span>
     </div>
     <div class="tabs" role="tablist" aria-label="Portfolio sections">
@@ -137,7 +142,7 @@
     <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
       <div class="org">
         <img class="org-icon" src="icon.jpeg" alt="Leaf Network icon" />
-        <div><h1>Leaf Network</h1><div class="handle">@leafnetworkhq</div></div>
+        <div><h1>Leaf Network</h1><div class="handle"><a class="handle" href="https://github.com/leafnetworkhq">@leafnetworkhq</a></div></div>
       </div>
       <p class="description">"lowkey dumb ppl 🥀" </p>
       <div class="home-foot"><span>INDEPENDENT DEV GROUP</span><span>EST. WHENEVER</span></div>
@@ -153,11 +158,11 @@
     </section>
 
     <section class="panel" id="panel-members" role="tabpanel" aria-labelledby="tab-members" hidden>
-      <p class="section-label">Three humans behind the tabs</p>
+      <p class="section-label">Members</p>
       <div class="placeholder-list">
-        <div class="member"><img src ="https://avatars.githubuserscontent.com/noodletag-ops" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/noodletag-ops">Noodletag</a></div><div class="member-role">Developer nb 1</div></div><span class="member-count">01</span></div>
-        <div class="member"><span class="avatar">02</span><div class="member-info"><div class="member-name">Member two</div><div class="member-role">Developer · bug finder</div></div><span class="member-count">02</span></div>
-        <div class="member"><span class="avatar">03</span><div class="member-info"><div class="member-name">Member three</div><div class="member-role">Developer · button clicker</div></div><span class="member-count">03</span></div>
+        <div class="member"><img src ="https://avatars.githubusercontent.com/noodletag-ops" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/noodletag-ops">Noodletag</a></div><div class="member-role">Developer · n°1</div></div><span class="member-count">01</span></div>
+        <div class="member"><img src ="https://avatars.githubusercontent.com/lylescouezec-cloud" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/lylescouezec-cloud">Karyenn</a></div><div class="member-role">Developer · n°2</div></div><span class="member-count">02</span></div>
+        <div class="member"><img src ="https://avatars.githubusercontent.com/NotANumber-dev" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/NotANumber-dev">NaN</a></div><div class="member-role">Developer · n°2 (last but not least)</div></div><span class="member-count">03</span></div>
       </div>
     </section>
   </main>
