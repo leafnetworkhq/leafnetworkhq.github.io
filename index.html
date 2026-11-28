@@ -39,11 +39,7 @@
       background-size: 5px 5px;
       mask-image: radial-gradient(ellipse at center, #000, transparent 78%);
     }
-    a {
-      color: inherit;
-      text-decoration: inherit;
-    }
-      
+    a { color: inherit; text-decoration: inherit; }
     #particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
     .glow {
       position: fixed; width: min(700px, 100vw); height: 520px; left: 50%; top: 50%;
@@ -105,20 +101,36 @@
     .member { display: flex; align-items: center; gap: 11px; padding: 11px 9px; border-bottom: 1px solid var(--line); transition: padding .2s ease; }
     .member:hover { padding-left: 13px; }
     .member:last-child { border-bottom: 0; }
-    .avatar { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; background: linear-gradient(145deg,#292c31,#141619); color: #d3d5da; font: 10px "DM Mono", monospace; box-shadow: inset 0 1px rgba(255,255,255,.05); }
+    .avatar { display: grid; place-items: center; width: 31px; height: 31px; flex: 0 0 auto; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; background: linear-gradient(145deg,#292c31,#141619); color: #d3d5da; font: 10px "DM Mono", monospace; box-shadow: inset 0 1px rgba(255,255,255,.05); object-fit: cover; }
     .member-info { flex: 1; }
-    .member-name { color: #e0e2e7; font-size: 11px; text-decoration: inherit;}
+    .member-name { color: #e0e2e7; font-size: 11px; text-decoration: inherit; }
     .member-role { margin-top: 4px; color: #858992; font: 9px "DM Mono", monospace; }
     .member-count { margin-left: auto; color: #777b84; font: 9px "DM Mono", monospace; }
+
+    /* A low-contrast, seamless loop of the existing 88×33 retro badges. */
+    .badge-marquee {
+      position: fixed; z-index: 2; right: 0; bottom: 18px; left: 0;
+      width: min(100%, 760px); margin-inline: auto; overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      pointer-events: none;
+    }
+    .badge-track { display: flex; width: max-content; animation: badge-scroll 54s linear infinite; }
+    .badge-group { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; padding-right: 12px; }
+    .badge-group img { display: block; width: 88px; height: 33px; flex: 0 0 88px; object-fit: contain; opacity: .58; filter: saturate(.72); }
+    @keyframes badge-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (max-width: 480px) {
       body { padding: 16px; }
       .card { width: 100%; min-height: 340px; padding: 19px; border-radius: 19px; }
       .panel { padding-top: 25px; }
       .description { font-size: 12px; }
+      .badge-marquee { bottom: 9px; }
+      .badge-group { gap: 9px; padding-right: 9px; }
     }
     @media (max-height: 480px) and (min-width: 600px) {
       body { overflow-y: auto; }
       .card { margin: 24px 0; }
+      .badge-marquee { position: absolute; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -160,12 +172,35 @@
     <section class="panel" id="panel-members" role="tabpanel" aria-labelledby="tab-members" hidden>
       <p class="section-label">Members</p>
       <div class="placeholder-list">
-        <div class="member"><img src ="https://avatars.githubusercontent.com/noodletag-ops" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/noodletag-ops">Noodletag</a></div><div class="member-role">Developer · n°1</div></div><span class="member-count">01</span></div>
-        <div class="member"><img src ="https://avatars.githubusercontent.com/lylescouezec-cloud" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/lylescouezec-cloud">Karyenn</a></div><div class="member-role">Developer · n°2</div></div><span class="member-count">02</span></div>
-        <div class="member"><img src ="https://avatars.githubusercontent.com/NotANumber-dev" class="avatar"/><div class="member-info"><div class="member-name"><a href="https://github.com/NotANumber-dev">NaN</a></div><div class="member-role">Developer · n°2 (last but not least)</div></div><span class="member-count">03</span></div>
+        <div class="member"><img src="https://avatars.githubusercontent.com/noodletag-ops" class="avatar" alt="" /><div class="member-info"><div class="member-name"><a href="https://github.com/noodletag-ops">Noodletag</a></div><div class="member-role">Developer · n°1</div></div><span class="member-count">01</span></div>
+        <div class="member"><img src="https://avatars.githubusercontent.com/lylescouezec-cloud" class="avatar" alt="" /><div class="member-info"><div class="member-name"><a href="https://github.com/lylescouezec-cloud">Karyenn</a></div><div class="member-role">Developer · n°2</div></div><span class="member-count">02</span></div>
+        <div class="member"><img src="https://avatars.githubusercontent.com/NotANumber-dev" class="avatar" alt="" /><div class="member-info"><div class="member-name"><a href="https://github.com/NotANumber-dev">NaN</a></div><div class="member-role">Developer · n°2 (last but not least)</div></div><span class="member-count">03</span></div>
       </div>
     </section>
   </main>
+
+  <div class="badge-marquee" aria-hidden="true">
+    <div class="badge-track">
+      <div class="badge-group">
+        <img src="IMG_0526.png" alt="" width="88" height="33" />
+        <img src="IMG_0527.gif" alt="" width="88" height="33" />
+        <img src="IMG_0528.gif" alt="" width="88" height="33" />
+        <img src="IMG_0529.gif" alt="" width="88" height="33" />
+        <img src="IMG_0530.gif" alt="" width="88" height="33" />
+        <img src="IMG_0531.gif" alt="" width="88" height="33" />
+        <img src="IMG_0532.gif" alt="" width="88" height="33" />
+      </div>
+      <div class="badge-group">
+        <img src="IMG_0526.png" alt="" width="88" height="33" />
+        <img src="IMG_0527.gif" alt="" width="88" height="33" />
+        <img src="IMG_0528.gif" alt="" width="88" height="33" />
+        <img src="IMG_0529.gif" alt="" width="88" height="33" />
+        <img src="IMG_0530.gif" alt="" width="88" height="33" />
+        <img src="IMG_0531.gif" alt="" width="88" height="33" />
+        <img src="IMG_0532.gif" alt="" width="88" height="33" />
+      </div>
+    </div>
+  </div>
 
   <script>
     const tabs = [...document.querySelectorAll('[role="tab"]')];
