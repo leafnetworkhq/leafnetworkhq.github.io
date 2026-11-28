@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#030405" />
+  <meta name="theme-color" content="#070908" />
   <meta name="description" content="Leaf Network — a small group making things for the internet." />
   <title>Leaf Network</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,125 +12,155 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #030405;
-      --card: rgba(10, 11, 13, .92);
-      --line: rgba(255,255,255,.09);
-      --muted: #858994;
-      --text: #f3f4f6;
-      --accent: #c9ff70;
+      --text: #f1f3ef;
+      --muted: #a0a59e;
+      --line: rgba(235, 244, 230, .11);
+      --accent: #c9e6a3;
     }
     * { box-sizing: border-box; }
     html, body { min-height: 100%; }
     body {
-      margin: 0;
+      display: grid;
       min-height: 100vh;
       min-height: 100svh;
-      display: grid;
       place-items: center;
+      margin: 0;
       padding: 24px;
       overflow: hidden;
-      background: var(--bg);
+      background: #070908;
       color: var(--text);
       font-family: Manrope, system-ui, sans-serif;
     }
     body::before {
-      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .2;
-      background-image: radial-gradient(rgba(255,255,255,.12) .55px, transparent .7px);
+      position: fixed;
+      z-index: 0;
+      inset: 0;
+      background-image: radial-gradient(rgba(230, 240, 224, .10) .55px, transparent .7px);
       background-size: 5px 5px;
+      content: "";
+      opacity: .13;
+      pointer-events: none;
       mask-image: radial-gradient(ellipse at center, #000, transparent 78%);
     }
-    a { color: inherit; text-decoration: inherit; }
-    #particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    a { color: inherit; text-decoration: none; }
+    #particles { position: fixed; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; }
     .glow {
-      position: fixed; width: min(700px, 100vw); height: 520px; left: 50%; top: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      width: min(680px, 100vw);
+      height: 520px;
       transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse, rgba(160, 205, 98, .075), rgba(90, 110, 75, .025) 38%, transparent 72%);
-      pointer-events: none; filter: blur(12px);
-    }
-    .card {
-      --mx: 50%; --my: 0%;
-      position: relative; isolation: isolate;
-      width: min(100%, 500px); min-height: 350px; padding: 24px;
-      border: 1px solid rgba(255,255,255,.12); border-radius: 23px;
-      background: linear-gradient(145deg, rgba(14,15,17,.97), var(--card) 60%, rgba(7,8,9,.97));
-      box-shadow: 0 35px 120px rgba(0,0,0,.8), 0 8px 32px rgba(0,0,0,.55), inset 0 1px rgba(255,255,255,.065);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      animation: arrive .8s cubic-bezier(.2,.8,.2,1) both;
-      transition: border-color .3s ease, box-shadow .3s ease;
-    }
-    .card::before {
-      content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none;
-      background: radial-gradient(400px circle at var(--mx) var(--my), rgba(255,255,255,.065), transparent 55%);
-      opacity: .85;
-    }
-    .card:hover { border-color: rgba(255,255,255,.18); box-shadow: 0 40px 130px rgba(0,0,0,.85), 0 0 50px rgba(153,195,94,.045), inset 0 1px rgba(255,255,255,.075); }
-    @keyframes arrive { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
-    .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-    .status { display: flex; align-items: center; gap: 8px; color: #b0b3ba; font: 10px "DM Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
-    .status i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 7px rgba(201,255,112,.8), 0 0 18px rgba(201,255,112,.3); animation: pulse 2.8s ease-in-out infinite; }
-    @keyframes pulse { 50% { box-shadow: 0 0 4px rgba(201,255,112,.45), 0 0 11px rgba(201,255,112,.16); } }
-    .tiny-mark { color: #777b84; font: 10px "DM Mono", monospace; letter-spacing: .04em; }
-    .tabs { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.028); }
-    .tab {
-      flex: 1; border: 0; border-radius: 8px; padding: 9px 10px;
-      background: transparent; color: #9296a0; cursor: pointer;
-      font: 500 11px Manrope, sans-serif; transition: background .2s, color .2s, box-shadow .2s, transform .2s;
-    }
-    .tab:hover { color: var(--text); }
-    .tab:active { transform: scale(.98); }
-    .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .tab[aria-selected="true"] { background: linear-gradient(180deg,#292b30,#202226); color: #fafbfc; box-shadow: inset 0 0 0 1px rgba(255,255,255,.075), 0 2px 8px rgba(0,0,0,.28); }
-    .panel { padding: 30px 5px 5px; animation: show .28s ease both; }
-    @keyframes show { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
-    .org { display: flex; align-items: center; gap: 15px; }
-    .org-icon { width: 51px; height: 51px; border-radius: 15px; border: 1px solid rgba(255,255,255,.15); object-fit: cover; background: #171a15; box-shadow: 0 5px 18px rgba(0,0,0,.3); }
-    h1 { margin: 0; font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -.055em; }
-    .handle { margin-top: 5px; color: var(--muted); font: 10px "DM Mono", monospace; }
-    .description { max-width: 360px; margin: 23px 0 0; color: #b2b5bc; font-size: 13px; line-height: 1.8; }
-    .home-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 30px; padding-top: 15px; border-top: 1px solid var(--line); color: #858992; font: 9px "DM Mono", monospace; letter-spacing: .035em; }
-    .home-foot span:last-child { color: #b1b5bc; }
-    .section-label { margin: 0 0 16px; color: #858994; font: 10px "DM Mono", monospace; letter-spacing: .09em; text-transform: uppercase; }
-    .placeholder-list { display: grid; gap: 9px; }
-    .placeholder { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 11px; background: linear-gradient(110deg,rgba(255,255,255,.035),rgba(255,255,255,.012)); transition: transform .2s, border-color .2s, background .2s; }
-    .placeholder:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.045); }
-    .placeholder-main { display: flex; align-items: center; gap: 11px; min-width: 0; }
-    .placeholder-icon { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 auto; border: 1px solid rgba(255,255,255,.07); border-radius: 9px; background: rgba(255,255,255,.055); color: #c5d6ad; font-size: 13px; }
-    .placeholder-name { overflow: hidden; color: #e0e2e7; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
-    .placeholder-note { margin-top: 4px; color: #858992; font: 9px "DM Mono", monospace; }
-    .badge { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 20px; padding: 5px 8px; color: #a3a7af; font: 8px "DM Mono", monospace; text-transform: uppercase; }
-    .member { display: flex; align-items: center; gap: 11px; padding: 11px 9px; border-bottom: 1px solid var(--line); transition: padding .2s ease; }
-    .member:hover { padding-left: 13px; }
-    .member:last-child { border-bottom: 0; }
-    .avatar { display: grid; place-items: center; width: 31px; height: 31px; flex: 0 0 auto; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; background: linear-gradient(145deg,#292c31,#141619); color: #d3d5da; font: 10px "DM Mono", monospace; box-shadow: inset 0 1px rgba(255,255,255,.05); object-fit: cover; }
-    .member-info { flex: 1; }
-    .member-name { color: #e0e2e7; font-size: 11px; text-decoration: inherit; }
-    .member-role { margin-top: 4px; color: #858992; font: 9px "DM Mono", monospace; }
-    .member-count { margin-left: auto; color: #777b84; font: 9px "DM Mono", monospace; }
-
-    /* A low-contrast, seamless loop of the existing 88×33 retro badges. */
-    .badge-marquee {
-      position: fixed; z-index: 2; right: 0; bottom: 18px; left: 0;
-      width: min(100%, 760px); margin-inline: auto; overflow: hidden;
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      background: radial-gradient(ellipse, rgba(151, 185, 113, .075), rgba(91, 112, 77, .025) 42%, transparent 72%);
+      filter: blur(18px);
       pointer-events: none;
     }
-    .badge-track { display: flex; width: max-content; animation: badge-scroll 54s linear infinite; }
-    .badge-group { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; padding-right: 12px; }
-    .badge-group img { display: block; width: 88px; height: 33px; flex: 0 0 88px; object-fit: contain; opacity: .58; filter: saturate(.72); }
-    @keyframes badge-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .card {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 460px);
+      min-height: 330px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(226, 238, 220, .16);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(24, 29, 24, .62), rgba(12, 16, 13, .57) 58%, rgba(9, 12, 10, .64));
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .48), inset 0 1px rgba(255, 255, 255, .08);
+      -webkit-backdrop-filter: blur(18px) saturate(125%);
+      backdrop-filter: blur(18px) saturate(125%);
+      animation: arrive .65s cubic-bezier(.2, .8, .2, 1) both;
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+    .card:hover {
+      border-color: rgba(226, 238, 220, .22);
+      box-shadow: 0 32px 100px rgba(0, 0, 0, .52), inset 0 1px rgba(255, 255, 255, .1);
+    }
+    @keyframes arrive { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+    .tabs {
+      display: flex;
+      gap: 3px;
+      padding: 4px;
+      border: 1px solid rgba(235, 244, 230, .09);
+      border-radius: 11px;
+      background: rgba(4, 7, 5, .28);
+    }
+    .tab {
+      flex: 1;
+      padding: 9px 10px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: #a2a79f;
+      cursor: pointer;
+      font: 500 12px Manrope, sans-serif;
+      transition: background .2s ease, color .2s ease;
+    }
+    .tab:hover { color: var(--text); }
+    .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .tab[aria-selected="true"] {
+      background: rgba(225, 238, 216, .12);
+      color: #f4f6f1;
+      box-shadow: inset 0 0 0 1px rgba(235, 244, 230, .08);
+    }
+    .panel { padding: 34px 5px 5px; animation: show .25s ease both; }
+    .panel[hidden] { display: none; }
+    @keyframes show { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    .org { display: flex; align-items: center; gap: 16px; }
+    .org-icon {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(235, 244, 230, .18);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .05);
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .22);
+    }
+    h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.055em; line-height: 1.2; }
+    .handle { display: inline-block; margin-top: 6px; color: var(--muted); font: 10px "DM Mono", monospace; }
+    .handle:hover, .member-name a:hover { color: var(--accent); }
+    .description { max-width: 350px; margin: 24px 0 0; color: #c1c6bd; font-size: 14px; line-height: 1.75; }
+    .section-label { margin: 0 0 14px; color: var(--muted); font: 10px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .project-list { display: grid; gap: 9px; }
+    .project {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .025);
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .project:hover { border-color: rgba(235, 244, 230, .18); background: rgba(255, 255, 255, .05); }
+    .project-name { color: #e7eae4; font-size: 12px; }
+    .project-note { margin-top: 4px; color: var(--muted); font: 9px "DM Mono", monospace; }
+    .project-state { color: #b6c4a6; font: 9px "DM Mono", monospace; }
+    .member-list { display: grid; }
+    .member { display: flex; align-items: center; gap: 12px; padding: 12px 8px; border-bottom: 1px solid var(--line); }
+    .member:last-child { border-bottom: 0; }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(235, 244, 230, .13);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .06);
+      object-fit: cover;
+    }
+    .member-name { color: #e4e8e0; font-size: 12px; }
+    .member-role { margin-top: 4px; color: var(--muted); font: 9px "DM Mono", monospace; }
     @media (max-width: 480px) {
       body { padding: 16px; }
-      .card { width: 100%; min-height: 340px; padding: 19px; border-radius: 19px; }
-      .panel { padding-top: 25px; }
-      .description { font-size: 12px; }
-      .badge-marquee { bottom: 9px; }
-      .badge-group { gap: 9px; padding-right: 9px; }
+      .card { min-height: 320px; padding: 19px; border-radius: 19px; }
+      .panel { padding-top: 28px; }
+      .description { font-size: 13px; }
     }
     @media (max-height: 480px) and (min-width: 600px) {
       body { overflow-y: auto; }
       .card { margin: 24px 0; }
-      .badge-marquee { position: absolute; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -141,10 +171,6 @@
   <canvas id="particles" aria-hidden="true"></canvas>
   <div class="glow" aria-hidden="true"></div>
   <main class="card" aria-label="Leaf Network">
-    <div class="topline">
-      <span class="status"><i></i> ln's hq</span>
-      <span class="tiny-mark">LN / 001</span>
-    </div>
     <div class="tabs" role="tablist" aria-label="Portfolio sections">
       <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">Home</button>
       <button class="tab" id="tab-projects" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1">Projects</button>
@@ -154,57 +180,37 @@
     <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
       <div class="org">
         <img class="org-icon" src="icon.jpeg" alt="Leaf Network icon" />
-        <div><h1>Leaf Network</h1><div class="handle"><a class="handle" href="https://github.com/leafnetworkhq">@leafnetworkhq</a></div></div>
+        <div>
+          <h1>Leaf Network</h1>
+          <a class="handle" href="https://github.com/leafnetworkhq">@leafnetworkhq</a>
+        </div>
       </div>
-      <p class="description">"lowkey dumb ppl 🥀" </p>
-      <div class="home-foot"><span>INDEPENDENT DEV GROUP</span><span>EST. WHENEVER</span></div>
+      <p class="description">Lowkey dumb ppl 🥀</p>
     </section>
 
     <section class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" hidden>
       <p class="section-label">Projects</p>
-      <div class="placeholder-list">
-        <div class="placeholder"><div class="placeholder-main"><span class="placeholder-icon">✳</span><div><div class="placeholder-name">Project one</div><div class="placeholder-note">A little idea taking shape</div></div></div><span class="badge">Soon</span></div>
-        <div class="placeholder"><div class="placeholder-main"><span class="placeholder-icon">⌁</span><div><div class="placeholder-name">Project two</div><div class="placeholder-note">Currently being tinkered with</div></div></div><span class="badge">WIP</span></div>
-        <div class="placeholder"><div class="placeholder-main"><span class="placeholder-icon">◌</span><div><div class="placeholder-name">Project three</div><div class="placeholder-note">Classified (not really)</div></div></div><span class="badge">Secret</span></div>
+      <div class="project-list">
+        <div class="project"><div><div class="project-name">Project one</div><div class="project-note">A little idea</div></div><span class="project-state">IN PROGRESS</span></div>
+        <div class="project"><div><div class="project-name">Project two</div><div class="project-note">Currently being built</div></div><span class="project-state">IN PROGRESS</span></div>
+        <div class="project"><div><div class="project-name">Project three</div><div class="project-note">Classified</div></div><span class="project-state">SOON</span></div>
       </div>
     </section>
 
     <section class="panel" id="panel-members" role="tabpanel" aria-labelledby="tab-members" hidden>
       <p class="section-label">Members</p>
-      <div class="placeholder-list">
-        <div class="member"><img src="https://avatars.githubusercontent.com/noodletag-ops" class="avatar" alt="" /><div class="member-info"><div class="member-name"><a href="https://github.com/noodletag-ops">Noodletag</a></div><div class="member-role">Developer · n°1</div></div><span class="member-count">01</span></div>
-        <div class="member"><img src="https://avatars.githubusercontent.com/lylescouezec-cloud" class="avatar" alt="" /><div class="member-info"><div class="member-name"><a href="https://github.com/lylescouezec-cloud">Karyenn</a></div><div class="member-role">Developer · n°2</div></div><span class="member-count">02</span></div>
-        <div class="member"><img src="https://avatars.githubusercontent.com/NotANumber-dev" class="avatar" alt="" /><div class="member-info"><div class="member-name"><a href="https://github.com/NotANumber-dev">NaN</a></div><div class="member-role">Developer · n°2 (last but not least)</div></div><span class="member-count">03</span></div>
+      <div class="member-list">
+        <div class="member"><img src="https://avatars.githubusercontent.com/noodletag-ops" class="avatar" alt="" /><div><div class="member-name"><a href="https://github.com/noodletag-ops">noodletag-ops</a></div><div class="member-role">Member</div></div></div>
+        <div class="member"><img src="https://avatars.githubusercontent.com/lylescouezec-cloud" class="avatar" alt="" /><div><div class="member-name"><a href="https://github.com/lylescouezec-cloud">lylescouezec-cloud</a></div><div class="member-role">Member</div></div></div>
+        <div class="member"><img src="https://avatars.githubusercontent.com/NotANumber-dev" class="avatar" alt="" /><div><div class="member-name"><a href="https://github.com/NotANumber-dev">NotANumber-dev</a></div><div class="member-role">Member</div></div></div>
       </div>
     </section>
   </main>
 
-  <div class="badge-marquee" aria-hidden="true">
-    <div class="badge-track">
-      <div class="badge-group">
-        <img src="IMG_0526.png" alt="" width="88" height="33" />
-        <img src="IMG_0527.gif" alt="" width="88" height="33" />
-        <img src="IMG_0528.gif" alt="" width="88" height="33" />
-        <img src="IMG_0529.gif" alt="" width="88" height="33" />
-        <img src="IMG_0530.gif" alt="" width="88" height="33" />
-        <img src="IMG_0531.gif" alt="" width="88" height="33" />
-        <img src="IMG_0532.gif" alt="" width="88" height="33" />
-      </div>
-      <div class="badge-group">
-        <img src="IMG_0526.png" alt="" width="88" height="33" />
-        <img src="IMG_0527.gif" alt="" width="88" height="33" />
-        <img src="IMG_0528.gif" alt="" width="88" height="33" />
-        <img src="IMG_0529.gif" alt="" width="88" height="33" />
-        <img src="IMG_0530.gif" alt="" width="88" height="33" />
-        <img src="IMG_0531.gif" alt="" width="88" height="33" />
-        <img src="IMG_0532.gif" alt="" width="88" height="33" />
-      </div>
-    </div>
-  </div>
-
   <script>
     const tabs = [...document.querySelectorAll('[role="tab"]')];
     const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+
     function activate(tab, focus = false) {
       tabs.forEach((item) => {
         const selected = item === tab;
@@ -214,6 +220,7 @@
       panels.forEach((panel) => { panel.hidden = panel.id !== tab.getAttribute('aria-controls'); });
       if (focus) tab.focus();
     }
+
     tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => activate(tab));
       tab.addEventListener('keydown', (event) => {
@@ -228,53 +235,57 @@
       });
     });
 
-    const card = document.querySelector('.card');
-    card.addEventListener('pointermove', (event) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
-      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.setProperty('--mx', '50%');
-      card.style.setProperty('--my', '0%');
-    });
-
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let width = 0, height = 0, particles = [], frame = 0;
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let frame = 0;
+
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth; height = window.innerHeight;
-      canvas.width = width * dpr; canvas.height = height * dpr;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const count = Math.min(115, Math.max(48, Math.floor(width * height / 10500)));
       particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width, y: Math.random() * height,
-        r: Math.random() * 1.35 + .35,
-        vx: (Math.random() - .5) * .17, vy: (Math.random() - .5) * .17,
-        a: Math.random() * .42 + .12,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.25 + .35,
+        vx: (Math.random() - .5) * .17,
+        vy: (Math.random() - .5) * .17,
+        a: Math.random() * .34 + .12,
         phase: Math.random() * Math.PI * 2,
         twinkle: Math.random() * .012 + .003
       }));
       if (frame) cancelAnimationFrame(frame);
       draw();
     }
+
     function draw() {
       ctx.clearRect(0, 0, width, height);
-      for (const p of particles) {
-        p.phase += p.twinkle;
-        const alpha = p.a * (.72 + Math.sin(p.phase) * .28);
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(218, 235, 195, ${alpha})`; ctx.fill();
+      for (const particle of particles) {
+        if (!reduceMotion) particle.phase += particle.twinkle;
+        const alpha = particle.a * (.76 + Math.sin(particle.phase) * .24);
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(218, 235, 195, ${alpha})`;
+        ctx.fill();
         if (!reduceMotion) {
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < -5) p.x = width + 5; if (p.x > width + 5) p.x = -5;
-          if (p.y < -5) p.y = height + 5; if (p.y > height + 5) p.y = -5;
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+          if (particle.x < -5) particle.x = width + 5;
+          if (particle.x > width + 5) particle.x = -5;
+          if (particle.y < -5) particle.y = height + 5;
+          if (particle.y > height + 5) particle.y = -5;
         }
       }
       if (!reduceMotion) frame = requestAnimationFrame(draw);
     }
+
     window.addEventListener('resize', resize, { passive: true });
     resize();
   </script>
