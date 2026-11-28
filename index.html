@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#070908" />
+  <meta name="theme-color" content="#050605" />
   <meta name="description" content="Leaf Network — a small group making things for the internet." />
   <title>Leaf Network</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       color-scheme: dark;
-      --text: #f1f3ef;
-      --muted: #a0a59e;
-      --line: rgba(235, 244, 230, .11);
+      --text: #f1f2ef;
+      --muted: #9a9d98;
+      --line: rgba(255, 255, 255, .1);
       --accent: #c9e6a3;
     }
     * { box-sizing: border-box; }
@@ -27,7 +28,7 @@
       margin: 0;
       padding: 24px;
       overflow: hidden;
-      background: #070908;
+      background: #050605;
       color: var(--text);
       font-family: Manrope, system-ui, sans-serif;
     }
@@ -52,8 +53,8 @@
       width: min(680px, 100vw);
       height: 520px;
       transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse, rgba(151, 185, 113, .075), rgba(91, 112, 77, .025) 42%, transparent 72%);
-      filter: blur(18px);
+      background: radial-gradient(ellipse, rgba(151, 185, 113, .055), rgba(91, 112, 77, .018) 42%, transparent 72%);
+      filter: blur(20px);
       pointer-events: none;
     }
     .card {
@@ -63,35 +64,35 @@
       min-height: 330px;
       padding: 24px;
       overflow: hidden;
-      border: 1px solid rgba(226, 238, 220, .16);
-      border-radius: 22px;
-      background: linear-gradient(145deg, rgba(24, 29, 24, .62), rgba(12, 16, 13, .57) 58%, rgba(9, 12, 10, .64));
-      box-shadow: 0 28px 90px rgba(0, 0, 0, .48), inset 0 1px rgba(255, 255, 255, .08);
-      -webkit-backdrop-filter: blur(18px) saturate(125%);
-      backdrop-filter: blur(18px) saturate(125%);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(8, 9, 8, .68), rgba(3, 4, 3, .56) 58%, rgba(7, 8, 7, .68));
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .5), inset 0 1px rgba(255, 255, 255, .055);
+      -webkit-backdrop-filter: blur(24px) saturate(115%);
+      backdrop-filter: blur(24px) saturate(115%);
       animation: arrive .65s cubic-bezier(.2, .8, .2, 1) both;
       transition: border-color .25s ease, box-shadow .25s ease;
     }
     .card:hover {
-      border-color: rgba(226, 238, 220, .22);
-      box-shadow: 0 32px 100px rgba(0, 0, 0, .52), inset 0 1px rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .19);
+      box-shadow: 0 32px 100px rgba(0, 0, 0, .56), inset 0 1px rgba(255, 255, 255, .07);
     }
     @keyframes arrive { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
     .tabs {
       display: flex;
       gap: 3px;
       padding: 4px;
-      border: 1px solid rgba(235, 244, 230, .09);
-      border-radius: 11px;
-      background: rgba(4, 7, 5, .28);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, .3);
     }
     .tab {
       flex: 1;
       padding: 9px 10px;
       border: 0;
-      border-radius: 8px;
+      border-radius: 7px;
       background: transparent;
-      color: #a2a79f;
+      color: #a2a49f;
       cursor: pointer;
       font: 500 12px Manrope, sans-serif;
       transition: background .2s ease, color .2s ease;
@@ -99,9 +100,9 @@
     .tab:hover { color: var(--text); }
     .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .tab[aria-selected="true"] {
-      background: rgba(225, 238, 216, .12);
-      color: #f4f6f1;
-      box-shadow: inset 0 0 0 1px rgba(235, 244, 230, .08);
+      background: rgba(255, 255, 255, .1);
+      color: #f4f5f2;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07);
     }
     .panel { padding: 34px 5px 5px; animation: show .25s ease both; }
     .panel[hidden] { display: none; }
@@ -111,16 +112,16 @@
       width: 54px;
       height: 54px;
       flex: 0 0 auto;
-      border: 1px solid rgba(235, 244, 230, .18);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, .04);
       object-fit: cover;
       box-shadow: 0 6px 20px rgba(0, 0, 0, .22);
     }
     h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.055em; line-height: 1.2; }
     .handle { display: inline-block; margin-top: 6px; color: var(--muted); font: 10px "DM Mono", monospace; }
     .handle:hover, .member-name a:hover { color: var(--accent); }
-    .description { max-width: 350px; margin: 24px 0 0; color: #c1c6bd; font-size: 14px; line-height: 1.75; }
+    .description { max-width: 350px; margin: 24px 0 0; color: #c1c3be; font-size: 14px; line-height: 1.75; }
     .section-label { margin: 0 0 14px; color: var(--muted); font: 10px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
     .project-list { display: grid; gap: 9px; }
     .project {
@@ -130,12 +131,12 @@
       gap: 12px;
       padding: 13px 14px;
       border: 1px solid var(--line);
-      border-radius: 11px;
-      background: rgba(255, 255, 255, .025);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, .2);
       transition: background .2s ease, border-color .2s ease;
     }
-    .project:hover { border-color: rgba(235, 244, 230, .18); background: rgba(255, 255, 255, .05); }
-    .project-name { color: #e7eae4; font-size: 12px; }
+    .project:hover { border-color: rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .035); }
+    .project-name { color: #e7e9e5; font-size: 12px; }
     .project-note { margin-top: 4px; color: var(--muted); font: 9px "DM Mono", monospace; }
     .project-state { color: #b6c4a6; font: 9px "DM Mono", monospace; }
     .member-list { display: grid; }
@@ -145,22 +146,42 @@
       width: 34px;
       height: 34px;
       flex: 0 0 auto;
-      border: 1px solid rgba(235, 244, 230, .13);
+      border: 1px solid rgba(255, 255, 255, .13);
       border-radius: 50%;
       background: rgba(255, 255, 255, .06);
       object-fit: cover;
     }
-    .member-name { color: #e4e8e0; font-size: 12px; }
+    .member-name { color: #e4e6e2; font-size: 12px; }
     .member-role { margin-top: 4px; color: var(--muted); font: 9px "DM Mono", monospace; }
+    .badge-marquee {
+      position: fixed;
+      z-index: 2;
+      right: 0;
+      bottom: 18px;
+      left: 0;
+      width: min(100%, 760px);
+      margin-inline: auto;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      pointer-events: none;
+    }
+    .badge-track { display: flex; width: max-content; animation: badge-scroll 54s linear infinite; }
+    .badge-group { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; padding-right: 12px; }
+    .badge-group img { display: block; width: 88px; height: 33px; flex: 0 0 88px; object-fit: contain; opacity: .58; filter: saturate(.72); }
+    @keyframes badge-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (max-width: 480px) {
       body { padding: 16px; }
-      .card { min-height: 320px; padding: 19px; border-radius: 19px; }
+      .card { min-height: 320px; padding: 19px; border-radius: 18px; }
       .panel { padding-top: 28px; }
       .description { font-size: 13px; }
+      .badge-marquee { bottom: 9px; }
+      .badge-group { gap: 9px; padding-right: 9px; }
     }
     @media (max-height: 480px) and (min-width: 600px) {
       body { overflow-y: auto; }
       .card { margin: 24px 0; }
+      .badge-marquee { position: absolute; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -206,6 +227,29 @@
       </div>
     </section>
   </main>
+
+  <div class="badge-marquee" aria-hidden="true">
+    <div class="badge-track">
+      <div class="badge-group">
+        <img src="IMG_0526.png" alt="" width="88" height="33" />
+        <img src="IMG_0527.gif" alt="" width="88" height="33" />
+        <img src="IMG_0528.gif" alt="" width="88" height="33" />
+        <img src="IMG_0529.gif" alt="" width="88" height="33" />
+        <img src="IMG_0530.gif" alt="" width="88" height="33" />
+        <img src="IMG_0531.gif" alt="" width="88" height="33" />
+        <img src="IMG_0532.gif" alt="" width="88" height="33" />
+      </div>
+      <div class="badge-group">
+        <img src="IMG_0526.png" alt="" width="88" height="33" />
+        <img src="IMG_0527.gif" alt="" width="88" height="33" />
+        <img src="IMG_0528.gif" alt="" width="88" height="33" />
+        <img src="IMG_0529.gif" alt="" width="88" height="33" />
+        <img src="IMG_0530.gif" alt="" width="88" height="33" />
+        <img src="IMG_0531.gif" alt="" width="88" height="33" />
+        <img src="IMG_0532.gif" alt="" width="88" height="33" />
+      </div>
+    </div>
+  </div>
 
   <script>
     const tabs = [...document.querySelectorAll('[role="tab"]')];
